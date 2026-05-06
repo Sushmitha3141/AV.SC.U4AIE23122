@@ -1,71 +1,88 @@
-# Backend Track Campus Hiring Assessment
+# AV.SC.U4AIE23122
 
-This is a simple FastAPI based backend project for the campus hiring assessment.
+Backend Track Campus Hiring Assessment using FastAPI.
 
-## Setup
+## Project Structure
 
-Install packages:
+* logging_middleware
+* vehicle_maintenance_scheduler
+* notification_app_be
+* notification_system_design.md
+
+## Install Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Create `.env` from `.env.example` and fill the details.
+## Create .env File
 
-First run registration only once:
+Copy values from `.env.example` to `.env`
+
+Fill:
+
+* email
+* name
+* mobile number
+* GitHub username
+* roll number
+* access code
+* client ID
+* client secret
+* access token
+
+## Logging Middleware
+
+Run:
 
 ```bash
-uvicorn logging_middleware.main:app --reload --port 8000
+python -m uvicorn logging_middleware.main:app --reload --port 8000
 ```
 
-Postman:
+Used for:
 
-```http
-POST http://127.0.0.1:8000/register
-POST http://127.0.0.1:8000/auth
-POST http://127.0.0.1:8000/test-log
-```
+* registration
+* authentication
+* logging API testing
 
-After auth, paste the received access token in `.env` as `ACCESS_TOKEN`.
+Main endpoints:
+
+* /register
+* /auth
+* /test-log
 
 ## Vehicle Maintenance Scheduler
 
 Run:
 
 ```bash
-uvicorn vehicle_maintenance_scheduler.main:app --reload --port 8001
+python -m uvicorn vehicle_maintenance_scheduler.main:app --reload --port 8001
 ```
 
-Postman:
+Main endpoint:
 
-```http
-GET http://127.0.0.1:8001/schedule-maintenance
-```
+* /schedule-maintenance
 
-This fetches depot and vehicle data from the protected APIs and solves the 0/1 knapsack problem.
+This fetches depot and vehicle data and selects the best maintenance tasks using 0/1 knapsack logic.
 
 ## Notification Priority Inbox
 
 Run:
 
 ```bash
-uvicorn notification_app_be.main:app --reload --port 8002
+python -m uvicorn notification_app_be.main:app --reload --port 8002
 ```
 
-Postman:
+Main endpoint:
 
-```http
-GET http://127.0.0.1:8002/priority-inbox
-```
+* /priority-inbox
 
-This fetches notifications from the protected API and returns top 10 unread notifications using heap logic.
+This fetches notifications and returns top 10 unread notifications using heap priority logic.
 
-## Design Answer
+## System Design
 
-The system design answer is written in:
+Written in:
 
 ```text
 notification_system_design.md
 ```
-
-"# AV.SC.U4AIE23122" 
